@@ -1,0 +1,11 @@
+# byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# venv
+env
+venv
+
+# Apple files
+.DS_Store
+._*
