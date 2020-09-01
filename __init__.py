@@ -22,7 +22,9 @@ class Plugin:
 
         @server.cli.command(name="delete_log")
         @option(
-            "--keep-last-days", default=15, help="Number of days to keep",
+            "--keep-last-days",
+            default=15,
+            help="Number of days to keep",
         )
         @option(
             "--log",
