@@ -34,10 +34,11 @@ class Plugin:
             help="Type of logs",
         )
         def delete_log(keep_last_days, log):
+            deletion_types = [log] if log == "changelog" else ["run"]
             deletion_time = datetime.now() - timedelta(days=keep_last_days)
             controller.result_log_deletion(
                 date_time=deletion_time.strftime("%d/%m/%Y %H:%M:%S"),
-                deletion_types=[log],
+                deletion_types=deletion_types,
             )
             controller.log(
                 "info", f"deleted all logs in '{log}' up until {deletion_time}"
