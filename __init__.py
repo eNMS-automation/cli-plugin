@@ -40,6 +40,4 @@ class Plugin:
                 date_time=deletion_time.strftime("%d/%m/%Y %H:%M:%S"),
                 deletion_types=deletion_types,
             )
-            env.log(
-                "info", f"deleted all logs in '{log}' up until {deletion_time}"
-            )
+            env.log("info", f"deleted all logs in '{log}' up until {deletion_time}")
