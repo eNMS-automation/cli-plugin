@@ -5,7 +5,7 @@ from json import loads
 
 
 class Plugin:
-    def __init__(self, server, controller, db, **kwargs):
+    def __init__(self, server, controller, db, vs, env, **kwargs):
         @server.cli.command(name="run_service")
         @argument("name")
         @option("--devices")
@@ -18,7 +18,7 @@ class Plugin:
             service = db.fetch("service", name=name)
             results = controller.run(service.id, **payload_dict)
             db.session.commit()
-            echo(controller.str_dict(results))
+            echo(vs.dict_to_string(results))
 
         @server.cli.command(name="delete_log")
         @option(
@@ -40,6 +40,6 @@ class Plugin:
                 date_time=deletion_time.strftime("%d/%m/%Y %H:%M:%S"),
                 deletion_types=deletion_types,
             )
-            controller.log(
+            env.log(
                 "info", f"deleted all logs in '{log}' up until {deletion_time}"
             )
